@@ -108,7 +108,7 @@ EOF
 fun_botOnOff() {
 dircreate
         [[ ! -f /etc/.maAsiss/bot.conf ]] && {
-        echo -e "benzbotvpn Bot Panel Installer
+        echo -e "givpn Bot Panel Installer
         "
         [[ ! -f /root/ResBotAuth ]] && {
         echo -ne "Input your Bot TOKEN : "
@@ -118,17 +118,17 @@ dircreate
         read adm_ids
         echo "Admin_ID=$adm_ids" >> /root/ResBotAuth
         }
-        echo -ne "Username admin panel use '@' [Ex: @benzbotvpn] : "
+        echo -ne "Username admin panel use '@' [Ex: @givpn] : "
         read admin_pnl
-        [[ -z $admin_pnl ]] && admin_pnl="@benzbotvpn"
+        [[ -z $admin_pnl ]] && admin_pnl="@givpn"
         echo ""
         echo -ne "Limit trial for reseller create user trial [default:1] : "
         read limit_pnl
         [[ -z $limit_pnl ]] && limit_pnl="1"
         echo ""
-        echo -ne "Your name store [dafult: benzbotvpn-STORE] : "
+        echo -ne "Your name store [dafult: givpn-STORE] : "
         read store_pnl
-        [[ -z $store_pnl ]] && store_pnl="benzbotvpn-STORE"
+        [[ -z $store_pnl ]] && store_pnl="givpn-STORE"
         echo ""
 cat <<-EOF >/etc/.maAsiss/bot.conf
 admin_panel : $admin_pnl
@@ -139,30 +139,30 @@ EOF
         echo -e "Info...\n"
         fun_bot1() {
             [[ ! -e "/etc/.maAsiss/.Shellbtsss" ]] && {
-				wget -qO- https://raw.githubusercontent.com/benzvpn/BENZBOTmaster/ShellBot.sh >/etc/.maAsiss/.Shellbtsss
+				wget -qO- https://raw.githubusercontent.com/benzvpn/BENZBOT/master/ShellBot.sh >/etc/.maAsiss/.Shellbtsss
 			}
-			[[ "$(grep -wc "benzbotvpn_bot" "/etc/rc.local")" = '0' ]] && {
-			    sed -i '$ i\screen -dmS benzbotvpn_bot bbt' /etc/rc.local >/dev/null 2>&1
+			[[ "$(grep -wc "givpn_bot" "/etc/rc.local")" = '0' ]] && {
+			    sed -i '$ i\screen -dmS givpn_bot bbt' /etc/rc.local >/dev/null 2>&1
 			}
         }
-        screen -dmS benzbotvpn_bot bbt >/dev/null 2>&1
+        screen -dmS givpn_bot bbt >/dev/null 2>&1
         fun_bot1
-        [[ $(ps x | grep "benzbotvpn_bot" | grep -v grep | wc -l) != '0' ]] && echo -e "\nBot successfully activated !" || echo -e "\nError1! Information not valid !"
+        [[ $(ps x | grep "givpn_bot" | grep -v grep | wc -l) != '0' ]] && echo -e "\nBot successfully activated !" || echo -e "\nError1! Information not valid !"
         sleep 2
         menu
         } || {
        clear
         echo -e "Info...\n"
         fun_bot2() {
-            screen -r -S "benzbotvpn_bot" -X quit >/dev/null 2>&1
-            [[ $(grep -wc "benzbotvpn_bot" /etc/rc.local) != '0' ]] && {
-                sed -i '/benzbotvpn_bot/d' /etc/rc.local
+            screen -r -S "givpn_bot" -X quit >/dev/null 2>&1
+            [[ $(grep -wc "givpn_bot" /etc/rc.local) != '0' ]] && {
+                sed -i '/givpn_bot/d' /etc/rc.local
             }
             rm -f /etc/.maAsiss/bot.conf
             sleep 1
         }
         fun_bot2
-        echo -e "\nBot benzbotvpn Stopped!"
+        echo -e "\nBot givpn Stopped!"
         sleep 2
         menu
     }
@@ -172,16 +172,16 @@ fun_instbot() {
     echo -e "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
     echo -e "         ⚠️ ATTENTION ⚠️"
     echo -e "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
-    echo -e "ไปที่ @BotFather สร้างบอทของคุณเองโดยพิมพ์ : /newbot"
-    echo -e "ไปที่ @MissRose_bot แล้วรับ ID ของคุณโดยพิมพ์ชื่อของคุณ : /id"
+    echo -e " • Go to @BotFather Create Your own Bot by Type : /newbot"
+    echo -e " • Go to @MissRose_bot And Get Your ID by Type : /id"
     echo -e "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
     echo -e "Note:
     
-    y = เพื่อเริ่มแผงควบคุมบอท
-    n = เพื่อยกเลิกแผงควบคุมบอทเริ่มต้น
-    d = ลบไฟล์การกำหนดค่าก่อน
+    y = to start bot panel
+    n = to cancel start bot panel
+    d = delete configuration file before
     "
-    echo -ne "คุณต้องการดำเนินการต่อหรือไม่ ? [y/n/d]: " 
+    echo -ne "Do you want to continue ? [y/n/d]: " 
     read resposta
     if [[ "$resposta" = 'd' ]]; then
     rm -f /etc/.maAsiss/bot.conf
